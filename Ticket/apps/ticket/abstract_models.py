@@ -7,7 +7,7 @@ from ..core.models import BaseModel
 
 class Status:
     PENDING = 'pending'
-    ACCEPTED = 'accepeted'
+    ACCEPTED = 'accepted'
     RESOLVED = 'resolved'
     REJECTED = 'rejected'
     
@@ -35,6 +35,11 @@ class AbstractTicket(BaseModel):
         max_length=35,
         editable=False,
     )
+    image = models.ImageField(
+        upload_to='ticket_images/', 
+        null=True, 
+        blank=True
+    )
     title = models.CharField(max_length=255)
     description = models.TextField()
     contact_info = models.CharField(max_length=255)
@@ -43,6 +48,8 @@ class AbstractTicket(BaseModel):
         default=Status.PENDING, 
         max_length=50
     )
+    start_date = models.DateField(null=True, blank=True)
+    expire_date = models.DateField(null=True, blank=True)
     
     def __str__(self):
         return self.title

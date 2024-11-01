@@ -1,9 +1,12 @@
 from Ticket.services.core import viewsets, permissions
 from Ticket.apps.ticket.models import Ticket
 from .serializers import TicketSerializer
-from rest_framework.authentication import TokenAuthentication
 from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.filters import SearchFilter
+from rest_framework.response import Response
+from rest_framework import status
 
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
@@ -17,6 +20,8 @@ class TicketViewSet(viewsets.ModelViewSet):
         'create': TicketSerializer,
         'update': TicketSerializer,
         'partial_update': TicketSerializer,
-        'destroy': TicketSerializer,
     }
+    
+    def destroy(self, request, *args, **kwargs):
+        return Response({"error": "Tickets cannot be deleted."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
