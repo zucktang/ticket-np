@@ -10,6 +10,5 @@ class TicketFactory(factory.django.DjangoModelFactory):
     description = "A test ticket description"
     contact_info = "contact@example.com"
     status = "pending"
-    start_date = timezone.now().date()
     expire_date = factory.LazyFunction(lambda: timezone.now().date())
     

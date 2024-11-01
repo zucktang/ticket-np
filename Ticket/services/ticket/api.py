@@ -22,6 +22,12 @@ class TicketViewSet(viewsets.ModelViewSet):
         'partial_update': TicketSerializer,
     }
     
+    def get_queryset(self):
+        return Ticket.objects.active()
+    
     def destroy(self, request, *args, **kwargs):
         return Response({"error": "Tickets cannot be deleted."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+    
+    
     

@@ -126,3 +126,6 @@ ADMIN_SITE_TITLE = "Ticket-Np"
 ADMIN_INDEX_TITLE = "การจัดการข้อมูล"
 
 STATIC_URL = '/static/'
+
+
+from .configs.ticket import * 
