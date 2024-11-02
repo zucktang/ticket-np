@@ -40,9 +40,16 @@ class AbstractTicket(BaseModel):
         null=True, 
         blank=True
     )
-    title = models.CharField(max_length=255)
+    title = models.CharField(
+        max_length=255, 
+        unique=True
+    )
     description = models.TextField()
-    contact_info = models.CharField(max_length=255)
+    contact_info = models.CharField(
+        max_length=255, 
+        blank=True, 
+        null=True
+    )
     status = models.CharField(
         choices=Status.status_choices, 
         default=Status.PENDING, 

@@ -28,7 +28,7 @@ class Ticket(AbstractTicket):
         raise NotImplementedError("Tickets cannot be deleted once created.")
     
     def save(self, *args, **kwargs):
-        if self.pk is None:
+        if not self.created:
             self.expire_date = timezone.now().date() + timezone.timedelta(days=settings.EXPIRE_DAYS)
         super().save(*args, **kwargs)
 
